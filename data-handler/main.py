@@ -62,7 +62,7 @@ def main():
         sampling_rate = board.get_sampling_rate(args.board_id)
         read_board_data(data, sampling_rate)
         time.sleep(0.1)
-        
+
     board.stop_stream()
     board.release_session()
 
