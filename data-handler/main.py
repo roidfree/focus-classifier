@@ -3,6 +3,7 @@ import time
 from scipy.fft import fft, fftfreq
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, BoardIds, BrainFlowPresets
 from brainflow.data_filter import DataFilter, FilterTypes, DetrendOperations, WindowOperations
+from brainflow.ml_model import MLModel, BrainFlowMetrics, BrainFlowClassifiers, BrainFlowModelParams
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -55,14 +56,23 @@ def main():
     board = BoardShim(args.board_id, params)
     board.prepare_session()
     board.start_stream ()
-    time.sleep(3)
     # data = board.get_current_board_data (256) # get latest 256 packages or less, doesnt remove them from internal buffer
+
+    eeg_channels = [1,2,3,4,5,6,7,8]
+    model_params = BrainFlowModelParams(BrainFlowMetrics.MINDFULNESS.value,
+                                        BrainFlowClassifiers.DEFAULT_CLASSIFIER.value)
+    model = MLModel(model_params)
+    model.prepare()
+    time.sleep(4)
     while True:
-        data = board.get_current_board_data(256)
+        data = board.get_board_data()
         sampling_rate = board.get_sampling_rate(args.board_id)
-        read_board_data(data, sampling_rate)
-        time.sleep(0.1)
-        
+        band_avgs = DataFilter.get_avg_band_powers(data, eeg_channels, sampling_rate, True)[0]
+        prediction = model.predict(band_avgs)
+        print (prediction)
+        time.sleep(1)
+
+    model.release()
     board.stop_stream()
     board.release_session()
 
