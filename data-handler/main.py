@@ -67,12 +67,18 @@ def main():
     while True:
         data = board.get_board_data()
         sampling_rate = board.get_sampling_rate(args.board_id)
+<<<<<<< HEAD
         band_avgs = DataFilter.get_avg_band_powers(data, eeg_channels, sampling_rate, True)[0]
         prediction = model.predict(band_avgs)
         print (prediction)
         time.sleep(1)
 
     model.release()
+=======
+        read_board_data(data, sampling_rate)
+        time.sleep(0.1)
+
+>>>>>>> b1b52eb43983835908c3c62fbb9a2f157b28873a
     board.stop_stream()
     board.release_session()
 
