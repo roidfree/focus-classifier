@@ -16,7 +16,7 @@ const calculateFocus = async () => {
         statusColor.value = "green"
     }
 }
-setInterval(calculateFocus, 500)
+setInterval(calculateFocus, 1000)
 
 </script>
 
@@ -24,7 +24,7 @@ setInterval(calculateFocus, 500)
     <div class="container">
         <div class="pulse-container">
                 <div class='ring' :style="'border-color:' + statusColor">
-                    <h1 :style="'color:' + statusColor">{{ Math.floor(focus * 100) }}</h1>
+                    <div class="ring-value">{{ Math.floor(focus * 100) }}</div>
                 </div>
                 <div class="pulse" :style="'border-color:' + statusColor"></div>
                 <div class="pulse2" :style="'border-color:' + statusColor"></div>
@@ -54,47 +54,55 @@ setInterval(calculateFocus, 500)
 .ring {
     display: flex;
     position: absolute;
-    height: 20vh;
-    width: 20vh;
+    height: 25vh;
+    width: 25vh;
     border: 5px solid white;
     border-radius: 50%; 
     justify-content: center;
     align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.ring-value {
+    font-size: 2.5rem;
 }
 
 .pulse {
     position: absolute;
-    height: 20vh;
-    width: 20vh;
+    height: 25vh;
+    width: 25vh;
     opacity: 0;
     border: 1px solid white;
     border-radius: 50%;
     -webkit-animation: pulsate 1s ease-out;
     -webkit-animation-iteration-count: infinite;
+    transition: all 0.2s ease-in-out;
 }
 
 .pulse2 {
     position: absolute;
-    height: 20vh;
-    width: 20vh;
+    height: 25vh;
+    width: 25vh;
     opacity: 0;
     border: 1px solid white;
     border-radius: 50%;
     -webkit-animation: pulsate2 1s ease-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-delay: 0.25s;
+    transition: all 0.2s ease-in-out;
 }
 
 .pulse3 {
     position: absolute;
-    height: 20vh;
-    width: 20vh;
+    height: 25vh;
+    width: 25vh;
     opacity: 0;
     border: 1px solid white;
     border-radius: 50%;
     -webkit-animation: pulsate3 1s ease-out;
     -webkit-animation-iteration-count: infinite;
-    -webkit-animation-delay: 0.75s
+    -webkit-animation-delay: 0.75s;
+    transition: all 0.2s ease-in-out;
 }
 
 
