@@ -53,7 +53,7 @@ a {
     display: flex;
     align-items: center;
     color: rgb(155, 155, 156);
-    padding: 1.1vh 0 0 0 ;
+    padding: 1.5vh 0 0 0 ;
     transition: all linear 0.1s;
 }
 
@@ -69,6 +69,6 @@ a {
     border-radius: 10px;
     width: fit-content;
     padding: 0.5vh;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 </style>

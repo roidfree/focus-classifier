@@ -1,34 +1,74 @@
 <script setup>
 import { ref } from "vue"
-import Pulse from "@/components/Pulse.vue";
 
 let focus = ref(0)
-let statusColor = ref("red")
+let statusColor = ref("transparent")
+
+let timer = ref(25 * 60)
+let countdown = ref(false)
 
 const calculateFocus = async () => {
+    if (!countdown.value) return;
+
     let data = await fetch("http://localhost:3000/get-focus")
     let n = await data.text()
     focus.value = Number(n).toFixed(2)
 
     if (focus.value < 0.5) {
-        statusColor.value = "red"
-    }else {
-        statusColor.value = "green"
+        statusColor.value = "#ff311f"
+    } else {
+        statusColor.value = "#03fc4e"
     }
 }
-setInterval(calculateFocus, 1000)
+
+const decTimer = () => {
+    if (timer.value == 0) return;
+    if (!countdown.value) return;
+
+    timer.value -= 1
+}
+
+const formatTime = (sec) => {
+    let mins = Math.floor(sec / 60)
+    let secs = sec - (mins * 60)
+
+    mins = mins < 10 ? `0${mins}` : mins
+    secs = secs < 10 ? `0${secs}` : secs
+
+    return `${mins}:${secs}`
+}
+
+
+let focusInterval = null
+let timerInterval = setInterval(decTimer, 1000)
+
+const toggleCountdown = async () => {
+    countdown.value = !countdown.value
+    if (!countdown.value) {
+        statusColor.value = "transparent"
+        clearInterval(focusInterval)
+    }else {
+        await calculateFocus()
+        focusInterval = setInterval(calculateFocus, 1000)
+    }
+}
 
 </script>
 
 <template>
     <div class="container">
         <div class="pulse-container">
-                <div class='ring' :style="'border-color:' + statusColor">
-                    <div class="ring-value">{{ Math.floor(focus * 100) }}</div>
-                </div>
-                <div class="pulse" :style="'border-color:' + statusColor"></div>
-                <div class="pulse2" :style="'border-color:' + statusColor"></div>
-                <div class="pulse3" :style="'border-color:' + statusColor"></div>
+            <div class='ring' :style="'border-color:' + statusColor">
+                <div class="start" @click="toggleCountdown()" v-if="!countdown">▷</div>
+                <div class="ring-value" v-if="countdown">{{ Math.floor(focus * 100) }}</div>
+            </div>
+            <div class="pulse" :style="'border-color:' + statusColor"></div>
+            <div class="pulse2" :style="'border-color:' + statusColor"></div>
+            <div class="pulse3" :style="'border-color:' + statusColor"></div>
+        </div>
+        <div class="timer-container" v-if="countdown">
+            <div class="timer">{{ formatTime(timer) }}</div>
+            <button class="btn" @click="toggleCountdown()"> | |</button>
         </div>
     </div>
 </template>
@@ -36,12 +76,39 @@ setInterval(calculateFocus, 1000)
 <style scoped>
 .container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
     color: white;
     width: 85%;
     height: 100%;
+}
+
+.start {
+    font-size: 2rem;
+    color: rgb(155, 155, 156);
+    z-index: 99;
+    transition: all 0.1s linear;
+    cursor: pointer
+}
+
+.start:hover {
+    color: white;
+}
+
+.btn {
+    border: none;
+    color: white;
+    background-color: transparent;
+    padding: 1vh;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 5%;
+    transition: all 0.2s ease-in-out;
+    z-index:1000;
+}
+
+.btn:hover {
+    color: black;
+    background-color: white;
 }
 
 .pulse-container {
@@ -51,13 +118,26 @@ setInterval(calculateFocus, 1000)
     width: 80%;
 }
 
+.timer-container {
+    position: fixed;
+    right: 5%;
+    top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.timer {
+   font-size: 2rem;
+}
 .ring {
     display: flex;
     position: absolute;
     height: 25vh;
     width: 25vh;
     border: 5px solid white;
-    border-radius: 50%; 
+    border-radius: 50%;
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;

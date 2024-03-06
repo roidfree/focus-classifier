@@ -12,7 +12,7 @@ const lineSeries = [
 
 const buildGraphOptions = (type) => {
     return {
-        colors: ['#2E93fA', '#eb4034'],
+        colors: ['#03fc4e', '#eb4034'],
         chart: {
             type: type,
             toolbar: false,
