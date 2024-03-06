@@ -32,6 +32,12 @@ const toggleMenu = () => showMenu.value = !showMenu.value
                         <div class="item-text">Resources</div>
                 </div>
             </router-link>
+            <router-link to="/resources">
+                <div class="menu-item">
+                    <v-icon class="item-icon" name="hi-document-report"></v-icon>
+                        <div class="item-text">My Page</div>
+                </div>
+            </router-link>
         </div>
     </div>
 </template>
