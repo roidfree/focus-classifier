@@ -5,18 +5,21 @@ import App from './App.vue'
 import Focus from "./pages/Focus.vue"
 import FocusAnalysis from "./pages/FocusAnalysis.vue"
 import Resources from "./pages/Resources.vue"
+import MyPage from './pages/my_page.vue'
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp, MdTimerOutlined, CoUser, RiFocusLine    } from "oh-vue-icons/icons"
 
 import VueApexCharts from "vue3-apexcharts";
 
-addIcons(GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp, MdTimerOutlined, CoUser, RiFocusLine    )
+
+addIcons(GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp)
 
 const routes = [
     { path: "/", component: Focus },
     { path: "/focus-analysis", component: FocusAnalysis },
-    { path: "/resources", component: Resources }
+    { path: "/resources", component: Resources },
+    { path: "/my-page", component: MyPage}
 ]
 
 const router = createRouter({
