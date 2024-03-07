@@ -20,6 +20,12 @@ const toggleMenu = () => showMenu.value = !showMenu.value
                     <div class="item-text">My Focus</div>
                 </div>
             </router-link>
+            <router-link to="/new_focus">
+                <div class="menu-item">
+                    <v-icon class="item-icon" name="gi-brain"></v-icon>
+                    <div class="item-text">New_Focus</div>
+                </div>
+            </router-link>
             <router-link to="/focus-analysis">
                 <div class="menu-item">
                     <v-icon class="item-icon" name="io-analytics"></v-icon>
@@ -32,7 +38,7 @@ const toggleMenu = () => showMenu.value = !showMenu.value
                         <div class="item-text">Resources</div>
                 </div>
             </router-link>
-            <router-link to="/resources">
+            <router-link to="/my-page">
                 <div class="menu-item">
                     <v-icon class="item-icon" name="hi-document-report"></v-icon>
                         <div class="item-text">My Page</div>

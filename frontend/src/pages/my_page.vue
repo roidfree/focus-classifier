@@ -1,4 +1,9 @@
 <template>
-    <h1>My test page</h1>
+    <h1>My Page</h1>
 </template>
 
+<style scoped>
+* {
+    color: white;
+}
+</style>
