@@ -10,19 +10,29 @@ const lineSeries = [
     }]
 
 
-const buildGraphOptions = (type) => {
+const buildGraphOptions = (type, xTitle, yTitle) => {
     return {
-        colors: ['#03fc4e', '#eb4034'],
+        colors: ['#119ff7', '#eb4034'],
         chart: {
             type: type,
+            fontFamily: "Roboto, sans-serif",
             toolbar: false,
             zoom: {
                 enabled: false
-            }
+            },
+            foreColor: "white"
         },
         plotOptions: {
             bar: {
                 rangeBarGroupRows: true,
+                columnWidth: "20%"
+            }
+        },
+        fill: {
+            gradient: {
+                enabled: true,
+                opacityFrom: 0.3,
+                opacityTo: 0
             }
         },
         tooltip: {
@@ -43,14 +53,31 @@ const buildGraphOptions = (type) => {
         },
         xaxis: {
             show: true,
+            min: 0,
             axisTicks: {
                 show: false
+            },
+            title: {
+                text: xTitle,
+                style: {
+                    fontWeight: 400
+                }
             }
         },
         yaxis: {
             show: true,
+            min: 0,
+            axisBorder: {
+                show: true
+            },
             axisTicks: {
                 show: false
+            },
+            title: {
+                text: yTitle,
+                style: {
+                    fontWeight: 400
+                }
             }
         },
         markers: 0
@@ -121,54 +148,128 @@ const graphView = ref(0)
 
 <template>
     <div class="container">
-        <div class="view-menu">
-            <div class="view-item" :class = "graphView == 0 ? 'active' : ''" @click="graphView = 0">Day</div>
-            <div class="view-item" :class = "graphView == 1 ? 'active' : ''" @click="graphView = 1">Week</div>
-            <div class="view-item" :class = "graphView == 2 ? 'active' : ''" @click="graphView = 2">Month</div>
+        <h1>Focus Analysis</h1>
+        <div class="row">
+            <div class="stat-container">
+                <div class="stat">
+                    <div class="stat-icon">
+                        <v-icon scale=1.5 name="co-user"></v-icon>
+                    </div>
+                    <div>
+                        <div class="stat-name">Profile</div>
+                        <div class="stat-value">John Doe</div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <v-icon scale=1.5 name="md-timer-outlined"></v-icon>
+                    </div>
+                    <div>
+                        <div class="stat-name">Average Focus Duration</div>
+                        <div class="stat-value">42m</div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <v-icon scale=1.5 name="ri-focus-line"></v-icon>
+                    </div>
+                    <div>
+                        <div class="stat-name">Focus score</div>
+                        <div class="stat-value">75%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="graph-container" style="width:70%">
+                <apexchart width="100%" height="100%" :options="buildGraphOptions('rangeBar', 'Day', 'Time')"
+                    :series="rangeSeries"></apexchart>
+            </div>
         </div>
-        <div class="graph-container">
-            <center>
-                <apexchart v-if="graphView == 0" width="45%" height="210%" :options="buildGraphOptions('line')" :series="lineSeries"></apexchart>
-                <apexchart v-if="graphView == 1" width="45%" height="210%" :options="buildGraphOptions('rangeBar')" :series="rangeSeries"></apexchart>
-                <apexchart v-if="graphView == 2" width="45%" height="210%" :options="buildGraphOptions('rangeBar')" :series="rangeSeries"></apexchart>
-            </center>
-        </div>
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon"></div>
-                <div class="stat">45m</div>
-                <div class="stat-name">Average focus time</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"></div>
-                <div class="stat">0.72</div>
-                <div class="stat-name">Average focus score</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"></div>
-                <div class="stat">2h</div>
-                <div class="stat-name">Total hours in focus</div>
-            </div>
+        <br>
+        <div class="graph-container" style="width:97%;">
+            <apexchart width="100%" height="190%" :options="buildGraphOptions('area', 'Time', 'Focus')"
+                :series="lineSeries"></apexchart>
         </div>
     </div>
+    <!--
+    
+        <div class="graph-container">
+            <apexchart width="100%" height="100%" :options="buildGraphOptions('line', 'Time', 'Focus')" :series="lineSeries"></apexchart>
+        </div>
+    -->
 </template>
 
 <style scoped>
-* {
+h1 {
     color: white;
 }
 
 .container {
-    width: 100%;
+    width: 85%;
     display: flex;
     flex-direction: column;
+}
+
+.day-select {
+    color: white;
+    background-color: #121316;
+    padding: 1%;
+    border: none;
+    border-radius: 10px;
+    float: right;
+    z-index: 100;
+}
+
+.row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.stat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35%;
+}
+
+.stat {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    padding: 8% 0 0 0;
-} 
+    background-color: rgb(25, 26, 29);
+    width: 90%;
+    border-radius: 10px;
+    padding: 2.5%;
+    margin-bottom: 1%;
+    color: white
+}
+
+.stat-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: 2%;
+    border-radius: 10px;
+    margin-right: 2%;
+}
+
+.stat-name {
+    font-weight: 400;
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-top: 2%;
+}
+
 
 .graph-container {
-    width: 100%;
-    padding: 2% 0 0 0;
+    background-color: rgb(25, 26, 29);
+    border-radius: 10px;
+    padding: 1.5%;
 }
 
 .view-menu {
@@ -193,31 +294,5 @@ const graphView = ref(0)
 
 .view-item.active {
     color: white;
-}
-
-.stats-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 50%;
-}
-
-.stat-card {
-    padding: 3%;
-    border-radius: 10px;
-    background-color: rgb(29, 30, 35);
-    margin-right: 2%;
-    margin-bottom: 2%;
-    width: 25%;
-}
-
-.stat {
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.stat-name {
-    color: rgb(155, 155, 156);
 }
 </style>

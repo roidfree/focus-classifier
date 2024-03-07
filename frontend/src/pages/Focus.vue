@@ -98,8 +98,8 @@ const toggleCountdown = async () => {
     border: none;
     color: white;
     background-color: transparent;
-    padding: 1vh;
-    font-size: 1rem;
+    padding: 10%;
+    font-size: 0.6rem;
     border-radius: 5px;
     margin-top: 5%;
     transition: all 0.2s ease-in-out;
@@ -126,11 +126,9 @@ const toggleCountdown = async () => {
     flex-direction: column;
     align-items: center;
     margin: auto;
+   font-size: 1.2rem;
 }
 
-.timer {
-   font-size: 2rem;
-}
 .ring {
     display: flex;
     position: absolute;

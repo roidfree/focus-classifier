@@ -7,11 +7,11 @@ import FocusAnalysis from "./pages/FocusAnalysis.vue"
 import Resources from "./pages/Resources.vue"
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp } from "oh-vue-icons/icons"
+import { GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp, MdTimerOutlined, CoUser, RiFocusLine    } from "oh-vue-icons/icons"
 
 import VueApexCharts from "vue3-apexcharts";
 
-addIcons(GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp)
+addIcons(GiBrain, HiDocumentReport, IoAnalytics, GiHamburgerMenu, BiCaretUp, MdTimerOutlined, CoUser, RiFocusLine    )
 
 const routes = [
     { path: "/", component: Focus },

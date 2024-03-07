@@ -16,20 +16,14 @@ const toggleMenu = () => showMenu.value = !showMenu.value
         <div v-if="showMenu" class="item-container">
             <router-link to="/">
                 <div class="menu-item">
-                    <v-icon class="item-icon" name="gi-brain"></v-icon>
+                    <v-icon name="gi-brain"></v-icon>
                     <div class="item-text">My Focus</div>
                 </div>
             </router-link>
             <router-link to="/focus-analysis">
                 <div class="menu-item">
-                    <v-icon class="item-icon" name="io-analytics"></v-icon>
+                    <v-icon name="io-analytics"></v-icon>
                     <div class="item-text">Focus Analysis</div>
-                </div>
-            </router-link>
-            <router-link to="/resources">
-                <div class="menu-item">
-                    <v-icon class="item-icon" name="hi-document-report"></v-icon>
-                        <div class="item-text">Resources</div>
                 </div>
             </router-link>
         </div>
@@ -46,6 +40,7 @@ a {
     display: flex;
     flex-direction: column;
     width: 10%;
+    padding: 0.2% 0 0 1%;
 }
 
 .menu-item {
