@@ -2,7 +2,7 @@
 import { ref } from "vue"
 
 let focus = ref(0)
-let statusColor = ref("transparent")
+let statusColor = ref("grey")
 
 let timer = ref(25 * 60)
 let countdown = ref(false)
@@ -14,7 +14,7 @@ const calculateFocus = async () => {
     let n = await data.text()
     focus.value = Number(n).toFixed(2)
 
-    if (focus.value < 0.5) {
+    if (focus.value < 0.7) {
         statusColor.value = "#ff311f"
     } else {
         statusColor.value = "#03fc4e"
@@ -45,11 +45,11 @@ let timerInterval = setInterval(decTimer, 1000)
 const toggleCountdown = async () => {
     countdown.value = !countdown.value
     if (!countdown.value) {
-        statusColor.value = "transparent"
+        statusColor.value = "grey"
         clearInterval(focusInterval)
     }else {
         await calculateFocus()
-        focusInterval = setInterval(calculateFocus, 1000)
+        focusInterval = setInterval(calculateFocus, 500)
     }
 }
 

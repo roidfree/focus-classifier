@@ -17,5 +17,6 @@ import Menu from "./components/Menu.vue"
   display: flex;
   flex-direction: row;
   align-items: start;
+  height: 100vh;
 }
 </style>

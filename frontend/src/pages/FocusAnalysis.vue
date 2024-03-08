@@ -12,7 +12,7 @@ const lineSeries = [
 
 const buildGraphOptions = (type, xTitle, yTitle) => {
     return {
-        colors: ['#119ff7', '#eb4034'],
+        colors: ['#4663e7', '#eb4034'],
         chart: {
             type: type,
             fontFamily: "Roboto, sans-serif",
@@ -155,7 +155,7 @@ const graphView = ref(0)
                     <div class="stat-icon">
                         <v-icon scale=1.5 name="co-user"></v-icon>
                     </div>
-                    <div>
+                    <div class="stat-content">
                         <div class="stat-name">Profile</div>
                         <div class="stat-value">John Doe</div>
                     </div>
@@ -164,7 +164,7 @@ const graphView = ref(0)
                     <div class="stat-icon">
                         <v-icon scale=1.5 name="md-timer-outlined"></v-icon>
                     </div>
-                    <div>
+                    <div class="stat-content">
                         <div class="stat-name">Average Focus Duration</div>
                         <div class="stat-value">42m</div>
                     </div>
@@ -190,12 +190,6 @@ const graphView = ref(0)
                 :series="lineSeries"></apexchart>
         </div>
     </div>
-    <!--
-    
-        <div class="graph-container">
-            <apexchart width="100%" height="100%" :options="buildGraphOptions('line', 'Time', 'Focus')" :series="lineSeries"></apexchart>
-        </div>
-    -->
 </template>
 
 <style scoped>
@@ -209,19 +203,9 @@ h1 {
     flex-direction: column;
 }
 
-.day-select {
-    color: white;
-    background-color: #121316;
-    padding: 1%;
-    border: none;
-    border-radius: 10px;
-    float: right;
-    z-index: 100;
-}
-
 .row {
     width: 100%;
-    height: 100%;
+    height: 35%;
     display: flex;
     flex-direction: row;
 }
@@ -230,19 +214,18 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 35%;
+    width: 45%;
 }
 
 .stat {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: rgb(25, 26, 29);
+    background-color: #1a1c1e;
     width: 90%;
     border-radius: 10px;
-    padding: 2.5%;
-    margin-bottom: 1%;
-    color: white
+    color: white;
+    padding: 1%;
 }
 
 .stat-icon {
@@ -267,9 +250,8 @@ h1 {
 
 
 .graph-container {
-    background-color: rgb(25, 26, 29);
+    background-color: #1a1c1e;
     border-radius: 10px;
-    padding: 1.5%;
 }
 
 .view-menu {
