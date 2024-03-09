@@ -25,7 +25,7 @@ const buildGraphOptions = (type, xTitle, yTitle) => {
         plotOptions: {
             bar: {
                 rangeBarGroupRows: true,
-                columnWidth: "20%"
+                columnWidth: "10%"
             }
         },
         fill: {
@@ -152,30 +152,21 @@ const graphView = ref(0)
         <div class="row">
             <div class="stat-container">
                 <div class="stat">
-                    <div class="stat-icon">
-                        <v-icon scale=1.5 name="co-user"></v-icon>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-name">Profile</div>
-                        <div class="stat-value">John Doe</div>
-                    </div>
+                    <div class="stat-name">Profile</div>
+                    <div class="stat-value">John Doe</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-icon">
-                        <v-icon scale=1.5 name="md-timer-outlined"></v-icon>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-name">Average Focus Duration</div>
-                        <div class="stat-value">42m</div>
-                    </div>
-                </div>
-                <div class="stat">
-                    <div class="stat-icon">
-                        <v-icon scale=1.5 name="ri-focus-line"></v-icon>
-                    </div>
-                    <div>
-                        <div class="stat-name">Focus score</div>
+                <div class="row">
+                    <div class="stat">
                         <div class="stat-value">75%</div>
+                        <div class="stat-name">Focus score</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">42m</div>
+                        <div class="stat-name">Average Focus Duration</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">48s</div>
+                        <div class="stat-name">Shift Time</div>
                     </div>
                 </div>
             </div>
@@ -185,7 +176,7 @@ const graphView = ref(0)
             </div>
         </div>
         <br>
-        <div class="graph-container" style="width:97%;">
+        <div class="graph-container" style="width:96%;">
             <apexchart width="100%" height="190%" :options="buildGraphOptions('area', 'Time', 'Focus')"
                 :series="lineSeries"></apexchart>
         </div>
@@ -205,33 +196,30 @@ h1 {
 
 .row {
     width: 100%;
-    height: 35%;
+    height: 30%;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .stat-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 45%;
+    justify-content: space-around;
+    background-color: #4663e7;
+    border-radius: 10px;
+    padding: 1%;
+    color: white;
+    width: 40%;
+    margin-right: 1%;
 }
 
 .stat {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #1a1c1e;
-    width: 90%;
-    border-radius: 10px;
-    color: white;
-    padding: 1%;
+    margin: 2%;
 }
 
 .stat-icon {
     display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 2rem;
     padding: 2%;
     border-radius: 10px;
@@ -252,6 +240,7 @@ h1 {
 .graph-container {
     background-color: #1a1c1e;
     border-radius: 10px;
+    padding: 2%;
 }
 
 .view-menu {
