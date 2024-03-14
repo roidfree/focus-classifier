@@ -3,14 +3,16 @@ import { ref } from "vue"
 
 const lineSeries = [
     {
+        name: "Focus",
         data: [null, null, null, 0.76, 0.84, 0.9, 0.6, null],
     },
     {
+        name: "Unfocus",
         data: [0.23, 0.33, 0.5, null, null, null, 0.6, 0.5],
     }]
 
 
-const buildGraphOptions = (type, xTitle, yTitle) => {
+const buildGraphOptions = (type, title, xTitle, yTitle) => {
     return {
         colors: ['#4663e7', '#eb4034'],
         chart: {
@@ -25,7 +27,7 @@ const buildGraphOptions = (type, xTitle, yTitle) => {
         plotOptions: {
             bar: {
                 rangeBarGroupRows: true,
-                columnWidth: "10%"
+                columnWidth: "5%"
             }
         },
         fill: {
@@ -49,7 +51,8 @@ const buildGraphOptions = (type, xTitle, yTitle) => {
             show: false
         },
         legend: {
-            show: false
+            show: true,
+            position: "right"
         },
         xaxis: {
             show: true,
@@ -86,7 +89,7 @@ const buildGraphOptions = (type, xTitle, yTitle) => {
 
 const rangeSeries = [
     {
-        name: "a",
+        name: "Focus",
         data: [
             {
                 x: "Mon",
@@ -123,7 +126,7 @@ const rangeSeries = [
         ]
     },
     {
-        name: "b",
+        name: "Unfocus",
         data: [
             {
                 x: "Mon",
@@ -170,14 +173,14 @@ const graphView = ref(0)
                     </div>
                 </div>
             </div>
-            <div class="graph-container" style="width:70%">
-                <apexchart width="100%" height="100%" :options="buildGraphOptions('rangeBar', 'Day', 'Time')"
+            <div class="graph-container" style="width:53%;height:85%">
+                <apexchart width="100%" height="100%" :options="buildGraphOptions('rangeBar', 'Week Overview', 'Day', 'Time')"
                     :series="rangeSeries"></apexchart>
             </div>
         </div>
         <br>
         <div class="graph-container" style="width:96%;">
-            <apexchart width="100%" height="190%" :options="buildGraphOptions('area', 'Time', 'Focus')"
+            <apexchart width="100%" height="190%" :options="buildGraphOptions('area', 'Focus Statistics', 'Time', 'Focus')"
                 :series="lineSeries"></apexchart>
         </div>
     </div>
@@ -211,11 +214,13 @@ h1 {
     padding: 1%;
     color: white;
     width: 40%;
+    height: 85%;
     margin-right: 1%;
 }
 
 .stat {
-    margin: 2%;
+    margin-left: 2%;
+    margin-right: 8%;
 }
 
 .stat-icon {
@@ -240,7 +245,7 @@ h1 {
 .graph-container {
     background-color: #1a1c1e;
     border-radius: 10px;
-    padding: 2%;
+    padding: 1%;
 }
 
 .view-menu {

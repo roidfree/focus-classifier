@@ -8,36 +8,17 @@ const page = ref(0)
 
 <template>
     <div class="menu">
-        <router-link to="/" @click="page = 0">
-            <div class="menu-item" :class="page == 0 ? 'active' : ''">
-                <v-icon class="menu-icon" scale=1.2 name="gi-brain"></v-icon>
-                <!-- <div class="item-text">My Focus</div> -->
-            </div>
+        <router-link to="/" @click="page = 0" class="menu-item" :class="page == 0 ? 'active' : ''">
+                <v-icon scale=1.2 name="gi-brain"></v-icon>
         </router-link>
-        <router-link to="/focus-analysis" @click="page = 1">
-            <div class="menu-item" :class="page == 1 ? 'active' : ''">
-                <v-icon class="menu-icon" scale=1.2 name="io-analytics"></v-icon>
-                <!-- <div class="item-text">Focus Analysis</div> -->
-            </div>
+        <router-link to="/focus-analysis" @click="page = 1" class="menu-item" :class="page == 1 ? 'active' : ''">
+                <v-icon scale=1.2 name="io-analytics"></v-icon>
         </router-link>
     </div>
 
 </template>
 
 <style scoped>
-a {
-    text-decoration: none;
-    width: 100%;
-}
-
-.logo {
-    color: #4663e7;
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin: 2%;
-    letter-spacing: 0.05rem;
-}
-
 .menu {
     display: flex;
     flex-direction: column;
@@ -49,9 +30,8 @@ a {
 }
 
 .menu-item {
+    text-decoration: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     color: rgb(155, 155, 156);
     width: 100%;
     padding: 25%;

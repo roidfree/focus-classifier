@@ -14,8 +14,10 @@ const calculateFocus = async () => {
     let n = await data.text()
     focus.value = Number(n).toFixed(2)
 
-    if (focus.value < 0.7) {
+    if (focus.value < 0.5) {
         statusColor.value = "#ff311f"
+    }else if (focus.value < 0.7) {
+        statusColor.value = "orange"
     } else {
         statusColor.value = "#03fc4e"
     }
@@ -49,7 +51,7 @@ const toggleCountdown = async () => {
         clearInterval(focusInterval)
     }else {
         await calculateFocus()
-        focusInterval = setInterval(calculateFocus, 500)
+        focusInterval = setInterval(calculateFocus, 1000)
     }
 }
 
