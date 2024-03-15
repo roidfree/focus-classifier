@@ -116,7 +116,7 @@ const toggleCountdown = async () => {
 .pulse-container {
     display: flex;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 20%;
     width: 80%;
 }
 

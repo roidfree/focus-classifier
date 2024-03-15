@@ -8,7 +8,7 @@ const lineSeries = [
     },
     {
         name: "Unfocus",
-        data: [0.23, 0.33, 0.5, null, null, null, 0.6, 0.5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        data: [0.23, 0.33, 0.5, null, null, null, 0.6, 0.5, null, null, null, null, 0.2, 0.4, 0.6, null, null, null, null, null, null, null, null, null],
     }]
 
 
@@ -193,6 +193,7 @@ h1 {
 
 .container {
     width: 85%;
+    margin-top: 5%;
     display: flex;
     flex-direction: column;
 }

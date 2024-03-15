@@ -18,7 +18,7 @@ const port = 3000;
 
 const boardId = BoardIds.CYTON_BOARD
 const board = new BoardShim(boardId, {
-  serialPort: "COM3"
+  serialPort: "COM9"
 })
 
 board.prepareSession()
