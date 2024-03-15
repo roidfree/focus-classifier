@@ -4,11 +4,11 @@ import { ref } from "vue"
 const lineSeries = [
     {
         name: "Focus",
-        data: [null, null, null, 0.76, 0.84, 0.9, 0.6, null],
+        data: [null, null, null, 0.76, 0.84, 0.9, 0.6, null, null, null, null, null, null, null, 0.6, 0.8, 0.95, 0.95, 0.90, null, null, null, null],
     },
     {
         name: "Unfocus",
-        data: [0.23, 0.33, 0.5, null, null, null, 0.6, 0.5],
+        data: [0.23, 0.33, 0.5, null, null, null, 0.6, 0.5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
     }]
 
 
