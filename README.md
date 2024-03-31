@@ -1,4 +1,4 @@
-# Focus Classifier
+# Focus Classifier Demo
 
 This project seeks to manipulate brain data using OpenBCIs backend (for now) and use the focus classification algorithm to deliver insightful learning metrics back to the user within an intuitive interface. 
 We are working on tweaking the Focus algorithm itself to provide more accurate results since OpenBCI have scrapped the Python-powered Focus widget a few years ago. 
